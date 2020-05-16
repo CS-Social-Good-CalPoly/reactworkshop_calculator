@@ -29,9 +29,27 @@ class App extends React.Component {
   }
   
   add = () => {
-    this.state.preNum = this.state.input
+    this.setState({preNum: this.state.input})
     this.setState({input: ""})
-    this.state.op = "plus"
+    this.setState({op: "plus"})
+  }
+  
+  subtract = () => {
+    this.setState({preNum: this.state.input})
+    this.setState({input: ""})
+    this.setState({op: "sub"})
+  }
+  
+  mult = () => {
+    this.setState({preNum: this.state.input})
+    this.setState({input: ""})
+    this.setState({op: "mult"})
+  }
+  
+  divide = () => {
+    this.setState({preNum: this.state.input})
+    this.setState({input: ""})
+    this.setState({op: "divide"})
   }
   
   evaluate = () => {
@@ -39,6 +57,12 @@ class App extends React.Component {
     
     if(this.state.op === "plus") {
       this.setState({input: parseFloat(this.state.preNum) + parseFloat(this.state.currNum)})
+    } else if(this.state.op === "sub") {
+      this.setState({input: parseFloat(this.state.preNum) - parseFloat(this.state.currNum)})
+    } else if(this.state.op === "mult") {
+      this.setState({input: parseFloat(this.state.preNum) * parseFloat(this.state.currNum)})
+    } else if(this.state.op === "divide") {
+      this.setState({input: parseFloat(this.state.preNum) / parseFloat(this.state.currNum)})
     }
   }
   
@@ -53,13 +77,13 @@ class App extends React.Component {
             <Button handleClick={this.addToInput} num="7"> </Button>
             <Button handleClick={this.addToInput} num="8"></Button>
             <Button handleClick={this.addToInput} num="9"></Button>
-            <Button num="/"></Button>
+            <Button handleClick={this.divide} num="/"></Button>
           </div>
           <div className = "row">
             <Button handleClick={this.addToInput} num="4"></Button>
             <Button handleClick={this.addToInput} num="5"></Button>
             <Button handleClick={this.addToInput} num="6"></Button>
-            <Button num="*"></Button>
+            <Button handleClick={this.mult} num="*"></Button>
           </div>
           <div className = "row">
             <Button handleClick={this.addToInput} num="1"></Button>
@@ -71,7 +95,7 @@ class App extends React.Component {
             <Button handleClick={this.addDecimalInput} num="."></Button>
             <Button handleClick={this.addZeroInput} num="0"></Button>
             <Button handleClick={this.evaluate} num="="></Button>
-            <Button num="-"></Button>
+            <Button handleClick={this.subtract} num="-"></Button>
           </div>
           <div className = "row">
             <Clear handleClear = {this.clearInput} num="Clear"></Clear>
